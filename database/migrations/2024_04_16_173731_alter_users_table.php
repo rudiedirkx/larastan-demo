@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Service\Schema\Blueprint;
+use App\Service\Schema\Migration;
 
 return new class extends Migration
 {
@@ -10,6 +10,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        echo "\n";
+
+        echo "stuff.stuff...\n";
+        var_dump(\DB::statement("
+            ALTER TABLE stuff
+            MODIFY stuff BIGINT UNSIGNED NULL
+        "));
+
         \Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('name', 'fullname');
         });
@@ -20,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        \Schema::table('users', function (Blueprint $table) {
+            $table->renameColumn('fullname', 'name');
+        });
     }
 };

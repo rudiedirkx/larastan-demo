@@ -16,7 +16,7 @@ class Controller extends BaseController
         $user = User::find(123);
 
         var_dump($user->email); // exists
-        var_dump($user->name); // old
+        // var_dump($user->name); // old
         var_dump($user->fullname); // new
     }
 }
