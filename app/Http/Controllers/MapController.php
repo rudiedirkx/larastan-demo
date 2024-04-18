@@ -22,7 +22,9 @@ class MapController extends Controller
     {
         $models = User::query()->get();
         \PHPStan\dumpType($models);
-        $users = $models->map(fn(User $model) => $model->created_by_user);
+        $users = $models->map(function(User $model) : User {
+            return $model->created_by_user;
+        });
         \PHPStan\dumpType($users);
     }
 
