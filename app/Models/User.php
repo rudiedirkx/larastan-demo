@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Base\ModelCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -46,6 +47,11 @@ class User extends Authenticatable
     public function getRealName()
     {
         return $this->fullname;
+    }
+
+    public function newCollection(array $models = []) : ModelCollection
+    {
+        return new ModelCollection($models);
     }
 
 }
