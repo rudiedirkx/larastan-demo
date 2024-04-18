@@ -14,7 +14,9 @@ class MapController extends Controller
     {
         $models = Post::query()->get();
         \PHPStan\dumpType($models);
-        $users = $models->map(fn(Post $model) => $model->created_by_user);
+        $users = $models->map(function(Post $model) : User {
+            return $model->created_by_user;
+        });
         \PHPStan\dumpType($users);
     }
 
