@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Base\ModelCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -49,6 +50,15 @@ class User extends Authenticatable
         return $this->fullname;
     }
 
+    public function created_by_user() : BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param array<int, static>
+     * @return ModelCollection<int, static>
+     */
     public function newCollection(array $models = []) : ModelCollection
     {
         return new ModelCollection($models);
