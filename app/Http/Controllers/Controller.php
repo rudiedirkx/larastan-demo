@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Base\ModelCollection as CustomCollection;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection as LaravelCollection;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -40,4 +41,19 @@ class Controller extends BaseController
             var_dump($user->fullname);
         }
     }
+
+    public function collection2()
+    {
+        $posts = Post::query()->get();
+        \PHPStan\dumpType($posts);
+
+        $chunks = $posts->chunk(10);
+        \PHPStan\dumpType($chunks);
+
+        foreach ($chunks as $chunk) {
+            \PHPStan\dumpType($chunk);
+            var_dump($chunk->modelKeys());
+        }
+    }
+
 }
