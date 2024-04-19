@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @param array<int, static>
+     * @param array<int, static> $models
      * @return ModelCollection<int, static>
      */
     public function newCollection(array $models = []) : ModelCollection
